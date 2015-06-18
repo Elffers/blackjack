@@ -4,6 +4,7 @@ describe BlackJack do
   let(:blackjack) { BlackJack.new(10, 5) }
   let(:blackjack2) { BlackJack.new(10, "J") }
   let(:blackjack3) { BlackJack.new("A", 7) }
+  let(:blackjack4) { BlackJack.new("A", "A") }
 
   describe '#score_hand' do
     it "scores the cards" do
@@ -26,6 +27,19 @@ describe BlackJack do
     it "scores all the cards" do
       blackjack.deal 5
       expect(blackjack.score).to eq 20
+    end
+
+    it "correctly scores hands with more than one ace" do
+      expect(blackjack4.score).to eq 12
+
+      blackjack4.deal "A"
+      expect(blackjack4.score).to eq 13
+
+      blackjack4.deal "A"
+      expect(blackjack4.score).to eq 14
+
+      blackjack4.deal "J"
+      expect(blackjack4.score).to eq 14
     end
   end
 
